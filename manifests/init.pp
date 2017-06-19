@@ -103,7 +103,7 @@
 # [*proxy_listen_port*]
 #  Port to listen on for proxy connection
 #
-# [*proxy_web_listen_address*]
+# [*proxy_web_listen_addr*]
 #  Address to listen on for web proxy
 #
 # [*proxy_web_listen_port*]
