@@ -45,5 +45,4 @@ class teleport::config {
     notify  => Service['teleport'],
     content => template('teleport/teleport.yaml.erb')
   }
-
 }

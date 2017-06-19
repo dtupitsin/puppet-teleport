@@ -4,11 +4,11 @@
 # It sets variables according to platform
 class teleport::params {
 
-  $version         = 'v1.0.0'
+  $version         = '1.0.0'
   $archive_path    = '/tmp/teleport.tar.gz'
-  $extract_path    = "/opt/teleport-${version}"
   $bin_dir         = '/usr/local/bin'
   $assets_dir      = '/usr/local/share/teleport'
+  $data_dir        = '/var/lib/teleport'
   $config_path     = '/etc/teleport.yaml'
   $nodename        = $::fqdn
 
