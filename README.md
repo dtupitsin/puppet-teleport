@@ -159,6 +159,9 @@ An array of auth servers to connect to
 
 Whether to start the auth service. Default: `false`
 
+#### `dynamic_config` [Bool]
+Whether dynamic configuration for the configuration should be on or off
+
 #### `auth_listen_addr` [String]
 
 Address to listen for auth_service

@@ -140,6 +140,7 @@ class teleport (
   $assets_dir            = $teleport::params::assets_dir,
   $nodename              = $teleport::params::nodename,
   $data_dir              = $teleport::params::datadir,
+  $dynamic_config        = $teleport::params::dynamic_config,
   $auth_token            = undef,
   $advertise_ip          = undef,
   $storage_backend       = undef,

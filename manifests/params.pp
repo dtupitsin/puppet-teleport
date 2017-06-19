@@ -11,6 +11,7 @@ class teleport::params {
   $data_dir        = '/var/lib/teleport'
   $config_path     = '/etc/teleport.yaml'
   $nodename        = $::fqdn
+  $dynamic_config  = false
 
   case $::operatingsystem {
     'RedHat', 'CentOS': {
