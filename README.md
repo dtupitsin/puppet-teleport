@@ -147,90 +147,90 @@ Log destination
 
 Log output level. Default: `"ERROR"`
 
-#### `config_path` [String]
+##### `config_path` [String]
 
 Path to config file for teleport. Default: `/etc/teleport.yaml`
 
-#### `auth_servers` [Array]
+##### `auth_servers` [Array]
 
 An array of auth servers to connect to
 
-#### `auth_enable` [Bool]
+##### `auth_enable` [Bool]
 
 Whether to start the auth service. Default: `false`
 
-#### `dynamic_config` [Bool]
+##### `dynamic_config` [Bool]
 Whether dynamic configuration for the configuration should be on or off
 
-#### `auth_listen_addr` [String]
+##### `auth_listen_addr` [String]
 
 Address to listen for auth_service
 
-#### `auth_listen_port` [String]
+##### `auth_listen_port` [String]
 
 Port to listen on for auth server
 
-#### `auth_service_tokens` [Array]
+##### `auth_service_tokens` [Array]
 
 The provisioning tokens for the auth tokens
 
-#### `ssh_enable` [String]
+##### `ssh_enable` [String]
 
 Whether to start SSH service. Default: `true`
 
-#### `ssh_listen_addr` [String]
+##### `ssh_listen_addr` [String]
 
 Address to listen on for SSH connections. Default: `0.0.0.0`
 
-#### `ssh_listen_port` [String]
+##### `ssh_listen_port` [String]
 
 Port to listen on for SSH connection
 
-#### `labels` [Hash]
+##### `labels` [Hash]
 
 A hash of labels to assign to hosts
 
-#### `proxy_enable` [Bool]
+##### `proxy_enable` [Bool]
 
 Where to start the proxy service. Default. `false`
 
-#### `proxy_listen_addr` [String]
+##### `proxy_listen_addr` [String]
 
 Address to listen on for proxy
 
-#### `proxy_listen_port` [String]
+##### `proxy_listen_port` [String]
 
 Port to listen on for proxy connection
 
-#### `proxy_web_listen_address` [String]
+##### `proxy_web_listen_address` [String]
 
 Port to listen on for web proxy connections
 
-#### `proxy_ssl` [Bool]
+##### `proxy_ssl` [Bool]
 
 Enable or disable SSL support. Default: `false`
 
-#### `proxy_ssl_key` [String]
+##### `proxy_ssl_key` [String]
 
 Path to SSL key for proxy
 
-#### `proxy_ssl_cert` [String]
+##### `proxy_ssl_cert` [String]
 
 Path to SSL cert for proxy
 
-#### `init_style` [String]
+##### `init_style` [String]
 
 Which init system to use to start the service.
 
-#### `manage_service` [Bool]
+##### `manage_service` [Bool]
 
 Whether puppet should manage and configure the service
 
-#### `service_ensure` [String]
+##### `service_ensure` [String]
 
 State of the teleport service (Running/Stopped)
 
-#### `service_enable` [Bool]
+##### `service_enable` [Bool]
 
 Whether the service should be enabled on startup
 
