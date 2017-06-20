@@ -72,10 +72,12 @@ auth_service:
   cluster_name: <%= scope.lookupvar('teleport::cluster_name') %>
 <% end -%>
 <% unless scope.lookupvar('teleport::trusted_clusters').empty? -%>
-  trusted_clusters: <%- scope.lookupvar('teleport::trusted_clusters').flatten.each do |cluster| %>
-  <%- cluster.each do |key, value| -%>
-    <%= "#{key}: #{value}" %>
-  <%- end %>
+  trusted_clusters: <%- scope.lookupvar('teleport::trusted_clusters').each do |key, value| %>
+<%- if key == 'key_file' -%>
+    <%= "- #{key}: #{value}" -%>
+<%- else -%>
+      <%= "#{key}: #{value}" -%>
+<%- end -%>
 <%- end -%>
 
 <% end -%>
