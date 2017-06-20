@@ -178,11 +178,11 @@ The provisioning tokens for the auth tokens
 
 An optional cluster name to assign to the cluster
 
-#### `trusted_clusters` [Hash]
+##### `trusted_clusters` [Hash]
 
 Specifies the other cluster to trust. Default: empty hash
 
-#### `ssh_enable` [String]
+##### `ssh_enable` [String]
 
 Whether to start SSH service. Default: `true`
 
