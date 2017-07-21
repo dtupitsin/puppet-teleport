@@ -79,6 +79,10 @@
 #  The provisioning tokens for the auth tokens
 #  Defaults to an empty array
 #
+# [*$authentication*]
+# defines the types and second factors the auth server supports
+# Defaults to an empty hash
+#
 # [*cluster_name*]
 #  The cluster name. If none specified, uses a GUID
 #  Defaults to undef
@@ -162,6 +166,7 @@ class teleport (
   $auth_listen_addr      = '127.0.0.1',
   $auth_listen_port      = '3025',
   $auth_service_tokens   = [],
+  $authentication        = {},
   $cluster_name          = undef,
   $trusted_clusters      = {},
   $ssh_enable            = true,
@@ -184,6 +189,7 @@ class teleport (
 
   validate_array($auth_servers)
   validate_bool($auth_enable)
+  validate_hash($authentication)
   validate_bool($ssh_enable)
   validate_hash($labels)
   validate_bool($proxy_enable)

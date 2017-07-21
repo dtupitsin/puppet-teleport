@@ -68,6 +68,30 @@ auth_service:
     - <%= token %>
 <% end -%>
 <% end -%>
+
+<% unless scope.lookupvar('teleport::authentication').empty? -%>
+  # defines the types and second factors the auth server supports
+  authentication:
+    # type can be local or oidc
+    type: <%= scope.lookupvar('teleport::authentication')['type'] %>
+    # second_factor can be off, otp, or u2f
+    second_factor: <%= scope.lookupvar('teleport::authentication')['second_factor'] %>
+
+    <%- if scope.lookupvar('teleport::authentication')['second_factor'] == 'u2f' -%>
+    # this section is only used if using u2f
+    u2f:
+      # app_id should point to the Web UI.
+      app_id: <%= scope.lookupvar('teleport::authentication')['u2f']['app_id'] %>
+      <%- unless scope.lookupvar('teleport::authentication')['u2f']['facets'].empty? -%>
+      # facets should list all proxy servers.
+      facets:
+        <%- scope.lookupvar('teleport::authentication')['u2f']['facets'].flatten.each do |facets| -%>
+        - <%= facets %>
+        <%- end -%>
+      <%- end -%>
+    <%- end -%>
+<% end -%>
+
 <% if ![:undef, nil].include?(scope.lookupvar("teleport::cluster_name")) -%>
   cluster_name: <%= scope.lookupvar('teleport::cluster_name') %>
 <% end -%>
