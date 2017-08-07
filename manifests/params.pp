@@ -2,9 +2,14 @@
 #
 # This class is meant to be called from the main class
 # It sets variables according to platform
-class teleport::params {
+class teleport::params (
+  $repo_location = undef,
+  $repos         = undef,
+  $repo_release  = $::lsbdistcodename,
+  $repo_key      = {},
+){
 
-  $version         = '1.0.0'
+  $version         = '2.2.4'
   $archive_path    = '/tmp/teleport.tar.gz'
   $bin_dir         = '/usr/local/bin'
   $assets_dir      = '/usr/local/share/teleport'

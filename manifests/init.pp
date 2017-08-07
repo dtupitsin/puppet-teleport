@@ -184,7 +184,9 @@ class teleport (
   $init_style            = $teleport::params::init_style,
   $manage_service        = true,
   $service_ensure        = 'running',
-  $service_enable        = true
+  $service_enable        = true,
+  $use_custom_repo       = false,
+  $manage_custom_repo    = false,
 ) inherits teleport::params {
 
   validate_array($auth_servers)
@@ -198,10 +200,15 @@ class teleport (
   validate_re($service_ensure, '^(running|stopped)$')
   validate_bool($service_enable)
   validate_array($auth_service_tokens)
+  validate_bool($use_custom_repo)
+  validate_bool($manage_custom_repo)
 
   anchor { 'teleport_first': }
   ->
-  class { 'teleport::install': } ->
+  class { 'teleport::install':
+    use_repo    => $use_custom_repo,
+    manage_repo => $manage_custom_repo
+  } ->
   class { 'teleport::config': } ->
   class { 'teleport::service': } ->
   anchor { 'teleport_final': }
