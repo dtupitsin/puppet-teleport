@@ -18,23 +18,23 @@ describe 'teleport' do
 
   context "When installing via URL by default" do
     let (:params) {{
-      :version => 'v1.0.0'
+      :version => '2.2.4'
     }}
-    it { should contain_archive('/tmp/teleport.tar.gz').with(:source => 'https://github.com/gravitational/teleport/releases/download/v1.0.0/teleport-v1.0.0-linux-amd64-bin.tar.gz') }
-    it { should contain_file('/usr/local/bin/tctl').with(:ensure => 'link', :target => '/opt/teleport-v1.0.0/teleport/tctl') }
-    it { should contain_file('/usr/local/share/teleport').with(:ensure => 'link', :target => '/opt/teleport-v1.0.0/teleport/app') }
+    it { should contain_archive('/tmp/teleport.tar.gz').with(:source => 'https://github.com/gravitational/teleport/releases/download/v2.2.4/teleport-v2.2.4-linux-amd64-bin.tar.gz') }
+    it { should contain_file('/usr/local/bin/tctl').with(:ensure => 'link', :target => '/opt/teleport-2.2.4/teleport/tctl') }
+    it { should contain_file('/usr/local/share/teleport').with(:ensure => 'link', :target => '/opt/teleport-2.2.4/teleport/app') }
   end
 
   context "When installing a special version" do
     let (:params) {{
-      :version => 'v.0.2.0-beta.8'
+      :version => '.0.2.0-beta.8'
     }}
     it { should contain_archive('/tmp/teleport.tar.gz').with(:source => 'https://github.com/gravitational/teleport/releases/download/v.0.2.0-beta.8/teleport-v.0.2.0-beta.8-linux-amd64-bin.tar.gz') }
   end
 
   context "When specifying a different archive path" do
     let (:params) {{
-      :version      => 'v0.1.0-alpha.7',
+      :version      => '0.1.0-alpha.7',
       :archive_path => "/opt/teleport.tar.gz"
     }}
     it { should contain_archive('/opt/teleport.tar.gz').with(:source => 'https://github.com/gravitational/teleport/releases/download/v0.1.0-alpha.7/teleport-v0.1.0-alpha.7-linux-amd64-bin.tar.gz') }
@@ -42,10 +42,10 @@ describe 'teleport' do
 
   context "When specifying a different bin_dir" do
     let (:params) {{
-      :version => 'v1.0.0',
+      :version => '1.0.0',
       :bin_dir => "/usr/sbin"
     }}
-    it { should contain_file('/usr/sbin/tctl').with(:ensure => 'link', :target => '/opt/teleport-v1.0.0/teleport/tctl') }
+    it { should contain_file('/usr/sbin/tctl').with(:ensure => 'link', :target => '/opt/teleport-1.0.0/teleport/tctl') }
   end
 
   context "When specifying a different extract_path" do
@@ -140,11 +140,14 @@ describe 'teleport' do
   context "set trusted clusters" do
     let(:params) {{
       :cluster_name => 'my-cluster',
-      :trusted_clusters => [ 
-        {'key_file' => '/etc/key', 'allow_logins' => 'john', 'tunnel_addr' => '6.6.6.6'}
-      ],
+      :trusted_clusters => {
+        'key_file' => '/etc/key', 'allow_logins' => 'john', 'tunnel_addr' => '6.6.6.6'
+      },
+      #:trusted_clusters => [ 
+      #  {'key_file' => '/etc/key', 'allow_logins' => 'john', 'tunnel_addr' => '6.6.6.6'}
+      #],
     }}
-    it { should contain_file('/etc/teleport.yaml').with_content(/  cluster_name: my-cluster\n    - key_file: \/etc\/key    allow_logins: john    tunnel_addr: 6\.6\.6\.6/) }    
+    it { should contain_file('/etc/teleport.yaml').with_content(/  cluster_name: my-cluster\n    - key_file: \/etc\/key\n    allow_logins: john\n    tunnel_addr: 6\.6\.6\.6\n/) }
   end
 
 
